@@ -13,4 +13,14 @@ public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String ex) {
         super(ex);
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public static class RequiredObjectIsNullException extends RuntimeException {
+
+        @Serial
+        private static final long serialVersionUID = 1L;
+        public RequiredObjectIsNullException(String ex) {
+            super(ex);
+        }
+    }
 }

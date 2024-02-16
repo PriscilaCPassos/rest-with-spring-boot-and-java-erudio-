@@ -67,7 +67,7 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
-    // Remover essa parte do código:
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

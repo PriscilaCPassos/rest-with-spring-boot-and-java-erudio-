@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service // Injetando como um serviço
+@Service
 public class PersonMapper {
 
     public PersonVOV2 convertEntityToVo(Person person) {
