@@ -1,6 +1,5 @@
 package br.com.erudio.data.vo.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
@@ -9,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serial;
 import java.io.Serializable;
 
-@JsonPropertyOrder({"id", "first_name", "last_name", "address", "gender"})
+@JsonPropertyOrder({"id", "first_name", "last_name", "address", "gender", "enabled"})
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     @Serial
@@ -25,6 +24,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     private String address;
     //@JsonIgnore
     private String gender;
+    private Boolean enabled;
 
 
     public PersonVO() {} // Constructor padrão que o JPA exige.
@@ -69,6 +69,13 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
         this.gender = gender;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -83,7 +90,9 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
             return false;
         if (getAddress() != null ? !getAddress().equals(personVO.getAddress()) : personVO.getAddress() != null)
             return false;
-        return getGender() != null ? getGender().equals(personVO.getGender()) : personVO.getGender() == null;
+        if (getGender() != null ? !getGender().equals(personVO.getGender()) : personVO.getGender() != null)
+            return false;
+        return getEnabled() != null ? getEnabled().equals(personVO.getEnabled()) : personVO.getEnabled() == null;
     }
 
     @Override
@@ -94,6 +103,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);
         result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getEnabled() != null ? getEnabled().hashCode() : 0);
         return result;
     }
 }

@@ -1,13 +1,11 @@
 package br.com.erudio.integrationtests.vo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.github.dozermapper.core.Mapping;
-import org.springframework.hateoas.RepresentationModel;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serial;
 import java.io.Serializable;
 
+@XmlRootElement
 public class PersonVO implements Serializable {
 
     @Serial
@@ -16,10 +14,10 @@ public class PersonVO implements Serializable {
     private Long id; // Alterando o atributo de id para Key(chave);
 
     private String firstName;
-
     private String lastName;
     private String address;
     private String gender;
+    private Boolean enabled;
 
 
     public PersonVO() {} // Constructor padrão que o JPA exige.
@@ -62,6 +60,13 @@ public class PersonVO implements Serializable {
         this.gender = gender;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -75,7 +80,9 @@ public class PersonVO implements Serializable {
             return false;
         if (getAddress() != null ? !getAddress().equals(personVO.getAddress()) : personVO.getAddress() != null)
             return false;
-        return getGender() != null ? getGender().equals(personVO.getGender()) : personVO.getGender() == null;
+        if (getGender() != null ? !getGender().equals(personVO.getGender()) : personVO.getGender() != null)
+            return false;
+        return getEnabled() != null ? getEnabled().equals(personVO.getEnabled()) : personVO.getEnabled() == null;
     }
 
     @Override
@@ -85,6 +92,7 @@ public class PersonVO implements Serializable {
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);
         result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getEnabled() != null ? getEnabled().hashCode() : 0);
         return result;
     }
 }

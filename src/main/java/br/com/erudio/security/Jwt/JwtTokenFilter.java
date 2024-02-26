@@ -1,7 +1,5 @@
 package br.com.erudio.security.Jwt;
 
-import java.io.IOException;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -12,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
+
+import java.io.IOException;
 
 public class JwtTokenFilter extends GenericFilterBean {
 
@@ -31,9 +31,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-
         }
         chain.doFilter(request, response);
-
     }
 }

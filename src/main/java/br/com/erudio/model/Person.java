@@ -24,6 +24,9 @@ public class Person implements Serializable {
     @Column(nullable = false, length = 6)
     private String gender;
 
+    @Column(nullable = false)
+    private Boolean enabled;
+
 
     public Person() {} // Constructor padrão que o JPA exige.
 
@@ -68,21 +71,28 @@ public class Person implements Serializable {
     }
 
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-              return true;
-        if (!(o instanceof Person person))
-              return false;
-        if (!id.equals(person.id))
-              return false;
-        if (!firstName.equals(person.firstName))
-              return false;
-        if (!lastName.equals(person.lastName))
-              return false;
-        if (!address.equals(person.address))
-              return false;
-        return gender.equals(person.gender);
+        if (this == o) return true;
+        if (!(o instanceof Person person)) return false;
+
+        if (getId() != null ? !getId().equals(person.getId()) : person.getId() != null) return false;
+        if (getFirstName() != null ? !getFirstName().equals(person.getFirstName()) : person.getFirstName() != null)
+            return false;
+        if (getLastName() != null ? !getLastName().equals(person.getLastName()) : person.getLastName() != null)
+            return false;
+        if (getAddress() != null ? !getAddress().equals(person.getAddress()) : person.getAddress() != null)
+            return false;
+        if (getGender() != null ? !getGender().equals(person.getGender()) : person.getGender() != null) return false;
+        return getEnabled() != null ? getEnabled().equals(person.getEnabled()) : person.getEnabled() == null;
     }
 
     @Override

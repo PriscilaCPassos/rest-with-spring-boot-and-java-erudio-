@@ -14,7 +14,7 @@ public class ResourceNotFoundException extends RuntimeException {
         super(ex);
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+   /** @ResponseStatus(HttpStatus.NOT_FOUND)
     public static class RequiredObjectIsNullException extends RuntimeException {
 
         @Serial
@@ -23,4 +23,5 @@ public class ResourceNotFoundException extends RuntimeException {
             super(ex);
         }
     }
+   */
 }
