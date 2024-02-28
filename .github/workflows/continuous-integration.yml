@@ -27,7 +27,7 @@ jobs:
     - name: Build Application Jar
       working-directory: ./Repositorio_Git/rest-with-spring-boot-and-java-erudio
       run: |
-        - pwd   
+        - pwd
         
         - mvn clean package
 
